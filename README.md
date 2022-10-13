@@ -18,8 +18,6 @@ It's a best practice to make as many different webhooks as you need for differen
 
 ## Usage
 
-`import atalert`
-
 ```
 
 import atalert
