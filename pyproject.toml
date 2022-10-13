@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "atalert"
-version = "0.1.0"
+version = "0.1.1"
 readme = "README.md"
 homepage = "https://atalert.dev"
 repository = "https://github.com/atadataco/atalert"
@@ -18,6 +18,9 @@ classifiers = [
 	"Topic :: Database :: Front-Ends",
 	"Topic :: System :: Logging",
 	"Topic :: System :: Monitoring",
+]
+packages = [
+    { include = "atalert" },
 ]
 
 [tool.poetry.dependencies]
