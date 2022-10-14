@@ -10,16 +10,16 @@ Customize the template, delivery channel, and notify your team.
 
 Then, take note of the webhook url slug for the code examples below!
 
-It's a best practice to make as many different webhooks as you need for different functional areas, such as code deployments, new user registrations, results of a long-running data pipeline. If there's information somewhere that's difficult to get to, use atalert to send it to your Slack workspace.
+It's a best practice to make as many different webhooks as you need for different functional areas, such as code deployments, new user registrations, results of a long-running data pipeline. If there's information somewhere that's difficult to get to, use Atalert to send it to your Slack workspace.
 
 ## Installation
 
 `pip install atalert` or `poetry add atalert`
 
-## Usage
+
+## Basic Usage
 
 ```
-
 import atalert
 
 
@@ -39,6 +39,29 @@ atalert.err('alert_slug_here', data)
 You'll immediately get a custom alert notification in slack according to your webhook configuration. 
 
 Then all your data or platform alerts are in the one place you are every day, Slack!
+
+
+## Sending Files to Slack
+
+First, configure your alert within the Atalert Slack App to use the 'attachment' template type.
+
+Then, use any of the following methods:
+
+```
+from atalert import ok_file, warn_file, err_file
+
+# send 'data.json' in the current working directory as a file attachment with OK status
+ok_file('alert_slug_here', './data.json')
+
+# send 'error.log' in as a file with ERROR status
+err_file('alert_slug_here', './error.log')
+
+# send 'datacat.jpg' as a picture with WARNING status
+warn_file('alert_slug_here', './datacat.jpg')
+
+```
+
+Enjoy fine file-based data in your Slack workspace!
 
 
 ## Decorator Usage

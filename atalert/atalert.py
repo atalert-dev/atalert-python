@@ -12,9 +12,10 @@ import requests
 ATALERT = 'https://atalert-platform.atadataco.com/post'
 
 class AlertTemplates(str, Enum):
-	form = 'form'
-	text = 'text'
-	json = 'json'
+	form = 'form' # basic form key value pairs
+	text = 'text' # any raw text, preformatted for example
+	json = 'json' # dictionary as json, pretty-printed
+	file = 'file' # multipart/file upload and render as file in slack
 
 def send(status: str, slug: str, data, template: AlertTemplates = AlertTemplates.text):
 	"""Send an alert to your webhook by slug."""
@@ -28,6 +29,8 @@ def send(status: str, slug: str, data, template: AlertTemplates = AlertTemplates
 			resp = requests.post(url, data=data)
 		if template == AlertTemplates.json:
 			resp = requests.post(url, json=data)
+		if template == AlertTemplates.file:
+			resp = requests.post(url, files={'file': data})
 		# error handle - might be 404, 429
 		logging.error(resp.status_code)
 		return resp.status_code
@@ -44,6 +47,23 @@ def warn(slug: str, data, template: AlertTemplates = AlertTemplates.text):
 def err(slug: str, data, template: AlertTemplates = AlertTemplates.text):
 	return send('error', slug, data)
 
+# files! should be able to say 'alert with this filesystem object'
+# adaptation of core send to open a file from the filesystem and send as data payload
+def send_file_path(status: str, slug: str, filepath: str):
+	with open(filepath, 'rb') as file:
+		return send(status, slug, data=file, template=AlertTemplates.file)
+
+# shorthand file path alerts
+def ok_file(slug: str, filepath: str):
+	return send_file_path('ok', slug, filepath)
+
+def warn_file(slug: str, filepath: str):
+	return send_file_path('warning', slug, filepath)
+
+def err_file(slug: str, filepath: str):
+	return send_file_path('error', slug, filepath)
+
+
 # error alert any exceptions within the wrapped method
 # exceptions are not re-raised
 def atalert_on_error(slug):
@@ -55,7 +75,7 @@ def atalert_on_error(slug):
 				return func(*args, **kwargs)
 			except Exception as error:
 				e = format_exception(error)
-				exc_lines = [x for x in e if not 'atalert/atalert.py' in x]
+				exc_lines = [x for x in e if not 'site-packages' in x]
 				err(slug, data="\n".join(exc_lines))
 		return wrapped
 	return wrap_errors
@@ -71,3 +91,4 @@ def atalert_ok_result(slug):
 			return result
 		return wrapped
 	return wrap_results
+
