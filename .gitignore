@@ -1,3 +1,9 @@
+# test runner with confidental webhook slug
+run_tests.sh
+
+
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

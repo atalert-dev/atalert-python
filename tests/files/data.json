@@ -1,0 +1,29 @@
+{
+    "code": "Q033",
+    "data":
+    {
+        "description": "view model dbt_testing.name_list",
+        "index": 7,
+        "total": 7
+    },
+    "invocation_id": "30206572-f52f-4b91-af6d-d2b18fdbbbb8",
+    "level": "info",
+    "log_version": 1,
+    "msg": "7 of 7 START view model dbt_testing.name_list.............................. [RUN]",
+    "node_info":
+    {
+        "materialized": "view",
+        "node_finished_at": null,
+        "node_name": "male_list_view",
+        "node_path": "human/name_list.sql",
+        "node_started_at": "2021-12-02T21:47:03.477004",
+        "node_status": "started",
+        "resource_type": "model",
+        "type": "node_status",
+        "unique_id": "model.jaffle_shop.name_list"
+    }, 
+    "pid": 81915,
+    "thread_name": "Thread-4",
+    "ts": "2021-12-02T21:47:03.480384Z",
+    "type": "log_line"
+}
