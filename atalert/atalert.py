@@ -12,8 +12,7 @@ import requests
 
 import atalert.integrations as integrations
 
-# ATALERT = 'https://atalert-platform.atadataco.com/post'
-ATALERT = 'http://127.0.0.1:8000/post'
+ATALERT = 'https://atalert-platform.atadataco.com/post'
 
 class AlertTemplates(str, Enum):
 	form = 'form' # basic form key value pairs
@@ -29,7 +28,7 @@ def send(status: str, slug: str, data, template: AlertTemplates = AlertTemplates
 		params = integrations.check()
 		if params:
 			logging.error(urllib.parse.urlencode(params))
-			
+
 			url = f"{url}?{urllib.parse.urlencode(params)}"
 			logging.error(url)
 		resp = None
