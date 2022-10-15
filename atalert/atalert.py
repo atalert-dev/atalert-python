@@ -2,14 +2,18 @@
 
 # easy and centralized alerts from any platform (that can run python) to your slack
 
-import json
+import json, os
+import urllib
 from enum import Enum
 import logging
 from functools import wraps
 from traceback import format_exception
 import requests
 
-ATALERT = 'https://atalert-platform.atadataco.com/post'
+import atalert.integrations as integrations
+
+# ATALERT = 'https://atalert-platform.atadataco.com/post'
+ATALERT = 'http://127.0.0.1:8000/post'
 
 class AlertTemplates(str, Enum):
 	form = 'form' # basic form key value pairs
@@ -22,6 +26,12 @@ def send(status: str, slug: str, data, template: AlertTemplates = AlertTemplates
 	try:
 		url = f"{ATALERT}/{status}/{slug}"
 		logging.error(url)
+		params = integrations.check()
+		if params:
+			logging.error(urllib.parse.urlencode(params))
+			
+			url = f"{url}?{urllib.parse.urlencode(params)}"
+			logging.error(url)
 		resp = None
 		if template == AlertTemplates.form:
 			resp = requests.post(url, data=json.dumps(data))
