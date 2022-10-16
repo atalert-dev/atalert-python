@@ -16,4 +16,4 @@ def test_zapier_formatting(slug):
 	
 	resp = atalert.ok(slug, {'zapier_payload': 'Testing *markdown* data from _zapier_\n\nIt will work great!'}, template=AlertTemplates.json)
 	
-	assert resp == 201
+	assert resp == 200
