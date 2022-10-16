@@ -32,6 +32,7 @@ def send(status: str, slug: str, data, template: AlertTemplates = AlertTemplates
 			url = f"{url}?{urllib.parse.urlencode(params)}"
 			logging.info(url)
 		resp = None
+		logging.error(template)
 		if template == AlertTemplates.form:
 			resp = requests.post(url, data=json.dumps(data))
 		if template == AlertTemplates.text:
@@ -48,13 +49,13 @@ def send(status: str, slug: str, data, template: AlertTemplates = AlertTemplates
 
 # shorthand methods for basic webhook send
 def ok(slug: str, data, template: AlertTemplates = AlertTemplates.text):
-	return send('ok', slug, data)
+	return send('ok', slug, data, template)
 
 def warn(slug: str, data, template: AlertTemplates = AlertTemplates.text):
-	return send('warning', slug, data)
+	return send('warning', slug, data, template)
 
 def err(slug: str, data, template: AlertTemplates = AlertTemplates.text):
-	return send('error', slug, data)
+	return send('error', slug, data, template)
 
 # files! should be able to say 'alert with this filesystem object'
 # adaptation of core send to open a file from the filesystem and send as data payload
