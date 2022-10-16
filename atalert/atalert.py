@@ -24,13 +24,13 @@ def send(status: str, slug: str, data, template: AlertTemplates = AlertTemplates
 	"""Send an alert to your webhook by slug."""
 	try:
 		url = f"{ATALERT}/{status}/{slug}"
-		logging.error(url)
+		logging.info(url)
 		params = integrations.check()
 		if params:
-			logging.error(urllib.parse.urlencode(params))
+			logging.info(urllib.parse.urlencode(params))
 
 			url = f"{url}?{urllib.parse.urlencode(params)}"
-			logging.error(url)
+			logging.info(url)
 		resp = None
 		if template == AlertTemplates.form:
 			resp = requests.post(url, data=json.dumps(data))
@@ -41,7 +41,7 @@ def send(status: str, slug: str, data, template: AlertTemplates = AlertTemplates
 		if template == AlertTemplates.file:
 			resp = requests.post(url, files={'file': data})
 		# error handle - might be 404, 429
-		logging.error(resp.status_code)
+		logging.info(resp.status_code)
 		return resp.status_code
 	except Exception as err:
 		logging.error(f"atalert.send: {err}")
