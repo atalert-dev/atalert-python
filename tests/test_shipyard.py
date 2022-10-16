@@ -1,6 +1,7 @@
 # test_shipyard.py
 import os
 from atalert import atalert
+atalert.ATALERT = 'http://127.0.0.1:8000/post'
 from atalert.atalert import AlertTemplates
 
 def test_shipyard_meta(slug):

@@ -1,5 +1,7 @@
 # test_decorators.py
 import logging
+import atalert
+atalert.ATALERT = 'http://127.0.0.1:8000/post'
 from atalert.atalert import atalert_on_error
 from atalert.atalert import atalert_ok_result
 import statistics

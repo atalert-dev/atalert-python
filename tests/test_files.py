@@ -1,7 +1,7 @@
 # test_files.py
 
 from atalert import atalert
-
+atalert.ATALERT = 'http://127.0.0.1:8000/post'
 
 def test_ok_json_file(slug):
 	resp = atalert.send_file_path('ok', slug, './tests/files/data.json')
