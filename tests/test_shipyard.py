@@ -13,4 +13,4 @@ def test_shipyard_meta(slug):
 	
 	resp = atalert.ok(slug, {'data': 'shipyard fake data'}, template=AlertTemplates.json)
 	
-	assert resp == 200
+	assert resp.status_code == 200
