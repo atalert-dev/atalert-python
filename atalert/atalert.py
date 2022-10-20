@@ -32,7 +32,7 @@ def send(status: str, slug: str, data, template: AlertTemplates = AlertTemplates
 			url = f"{url}?{urllib.parse.urlencode(params)}"
 			logging.info(url)
 		resp = None
-		logging.error(template)
+		# logging.error(template)
 		if template == AlertTemplates.form:
 			resp = requests.post(url, data=json.dumps(data))
 		if template == AlertTemplates.text:
@@ -43,7 +43,7 @@ def send(status: str, slug: str, data, template: AlertTemplates = AlertTemplates
 			resp = requests.post(url, files={'file': data})
 		# error handle - might be 404, 429
 		logging.info(resp.status_code)
-		return resp.status_code
+		return resp
 	except Exception as err:
 		logging.error(f"atalert.send: {err}")
 
