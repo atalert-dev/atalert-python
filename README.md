@@ -1,16 +1,17 @@
 # Atalert Python Package
 
-https://atalert.dev
+**[Atalert.dev](atalert.dev)**
 
-Too many different data notification or alert packages got you down?
+Too many different data notifications or alert packages got you down?
 
 Start by using the Atalert Slack App to generate alert webhooks.
 
-Customize the template, delivery channel, and notify your team. 
+Customize the template, delivery channel, and notify your team.
 
-Then, take note of the webhook url slug for the code examples below!
+Then, take note of the webhook URL slug for the code examples below!
 
-It's a best practice to make as many different webhooks as you need for different functional areas, such as code deployments, new user registrations, results of a long-running data pipeline. If there's information somewhere that's difficult to get to, use Atalert to send it to your Slack workspace.
+It's a best practice to make as many different webhooks as you need for other functional areas, such as code deployments, new user registrations, and results of a long-running data pipeline. If there's information somewhere that's difficult to get to, use Atalert to send it to your Slack workspace.
+
 
 ## Installation
 
