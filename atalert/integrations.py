@@ -15,7 +15,7 @@ def check():
 	if shipyard_meta:
 		return shipyard_meta
 
-	return {'params': 'testing'}
+	return
 
 	# TODO find other env things to check for follow same module.check() pattern
 	# return dictionaries we can convert to query strings
