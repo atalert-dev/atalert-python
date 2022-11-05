@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "atalert"
-version = "0.1.8"
+version = "0.1.9"
 readme = "README.md"
 homepage = "https://atalert.dev"
 repository = "https://github.com/atadataco/atalert"
