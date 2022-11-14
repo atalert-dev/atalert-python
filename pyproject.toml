@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "atalert"
-version = "0.1.9"
+version = "0.1.10"
 readme = "README.md"
 homepage = "https://atalert.dev"
-repository = "https://github.com/atadataco/atalert"
+repository = "https://github.com/atalert-dev/atalert-python"
 description = "Atalert slack alerting service helper module"
 authors = ["Kevin Haggerty <kevin@splatcollision.com>"]
 license = "MIT"
